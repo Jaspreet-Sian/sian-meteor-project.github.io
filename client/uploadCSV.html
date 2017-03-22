@@ -1,0 +1,23 @@
+<template name="uploadFile">
+  <div class="upload-container">
+    <nav class="nav-container">
+      <a href="#" class="home btn">Back to home</a>
+      <h1 class="center color"> Add Task Detail</h1>
+      <a href="#" class="taskDetail btn">View Task details</a>
+      <a href="#" class="taskInsetion btn">Add Task</a>
+    </nav>
+    <div class="upload-area flex-container-col  flex-vcenter">
+      <h1 style="color: #000;">Select CSV File to draw bar chart</h1>
+      {{#unless uploading}}
+        <input type="file" name="uploadCSVfile" id="uploadCSVfile" accept=".csv">
+      {{else}}
+        <i class="fa fa-spin fa-refresh" style="color: #000;"></i> <span style="color:#000;">Uploading files...</span>
+      {{/unless}}
+      <!-- <button type="button" name="button" class="uploadButton">Draw Chart</button> -->
+      <div class="chartDiv flex-container">
+         <svg class="chart" id="barChart"></svg>
+      </div>
+        {{chart}}
+    </div>
+  </div>
+</template>

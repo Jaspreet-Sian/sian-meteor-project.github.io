@@ -1,0 +1,137 @@
+<template name="tabularForm">
+    {{#if getResult}}
+      {{> sAlert}}
+      <table class="resultant-table" border="2">
+          <thead>
+            <tr>
+              <th>Task Name</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Date</th>
+              <th>Hours</th>
+              <th>Price</th>
+              <th>Classes</th>
+              <th>Course</th>
+              <th>Task Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+             {{#each getResult}}
+                 {{#if editing}}
+                      <tr>
+                        <td>
+                          <div class="table-field">
+                            <input class="table-task-name box box-size" type="text" id="tableTaskName" name="tableTaskName" placeholder="Task Name" value="{{taskName}}" style="padding: 0; width: 100px;" required >
+                          </div>
+                        </td>
+                        <td>
+                          <div class="table-field">
+                              <input class="table-from box box-size" id="tableFrom" type="time" name="tableFrom" value="{{from}}" style="padding: 0; width: 75px;" required>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="table-field">
+                              <input class="table-to box box-size" id="tableTo" type="time" name="tableTo" value="{{to}}" min="{{minTime}}" max="23:59" style="padding: 0; width: 75px;" required>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="table-field">
+                              <input class="table-date box box-size" type="date" id="tableDate" name="tableDate" value="{{formatDate date}}" style="padding: 0; width: 130px;" required>
+                              <!-- {{createdAtFormatted}} -->
+                          </div>
+                        </td>
+                        <td>
+                          <div class="table-field">
+                            <input class="table-hours box box-size" type="text" id="tableHours" name="tableHours" value="{{hours}}" style="padding: 0; width: 70px;" disabled required>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="table-field  ">
+                            <input class="table-price box box-size" type="number" id="tablePrice" name="tablePrice" min=0 max=200 step=5 value="{{price}}" style="padding: 0; width: 45px;" required>
+                          </div>
+                        </td>
+                        <td>
+                            <div class="table-field  ">
+                              <select class="box-size table-existing-classes" id="tableExistingClasses" name="tableExistingClasses" value="" style="padding: 0; width: 120px;">
+                                <option value="noselected" disabled>Choose any class</option>
+                                  <option value="class1" {{selected classes "class1"}}>Class1</option>
+                                  <option value="class2" {{selected classes "class2"}}>Class2</option>
+                                  <option value="class3" {{selected classes "class3"}}>Class3</option>
+                                  <option value="class4" {{selected classes "class4"}}>Class4</option>
+                                  <option value="class5" {{selected classes "class5"}}>Class5</option>
+                                  <option value="class6" {{selected classes "class6"}}>Class6</option>
+                                  <!-- <option value="{{classes}}" selected>{{classes}}</option> -->
+                              </select>
+                            </div>
+                        </td>
+                        <td>
+                          <div class="table-field  ">
+                            <select class="box-size table-existing-courses" id="tableExistingCourses" name="table-existing-courses" style="padding: 0; width: 120px;">
+                                <option value="cousre1" disabled>Choose any course</option>
+                                <option value="cousre1" {{selected course "cousre1"}}>Cousre1</option>
+                                <option value="cousre2" {{selected course "cousre2"}}>Cousre2</option>
+                                <option value="cousre3" {{selected course "cousre3"}}>Cousre3</option>
+                                <option value="cousre4" {{selected course "cousre4"}}>Cousre4</option>
+                                <option value="cousre5" {{selected course "cousre5"}}>Cousre5</option>
+                                <option value="cousre6" {{selected course "cousre6"}}>Cousre6</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="table-field  ">
+                            <textarea class="table-task-area box box-size" id="tableTask" name="tableTask" placeholder="Enter description about Task here" value="{{task}}" style="padding: 0; width: 120px;" required></textarea>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="table-field  ">
+                            <button class="updateBtn" type="button" name="updateButton">Update</button>
+                            <button class="cancelBtn" type="button" name="cancelButton">Cancel</button>
+                          </div>
+                        </td>
+                      </tr>
+                  {{else}}
+                      <tr>
+                        <td>
+                          <div class="table-data">{{taskName}}</div>
+                        </td>
+                        <td>
+                          <div class="table-data">{{from}}</div>
+                        </td>
+                        <td>
+                          <div class="table-data">{{to}}</div>
+                        </td>
+                        <td>
+                          <div class="table-data">{{date}}</div>
+                        </td>
+                        <td>
+                          <div class="table-data">{{hours}}</div>
+                        </td>
+                        <td>
+                          <div class="table-data">{{price}}</div>
+                        </td>
+                        <td>
+                            <div class="table-data">{{classes}}</div>
+                        </td>
+                        <td>
+                          <div class="table-data">{{course}}</div>
+                        </td>
+                        <td>
+                          <div class="table-data">{{task}}</div>
+                        </td>
+                        <td>
+                          <div class="table-data">
+                            <button class="editRecord" type="button" name="editButton">Edit</button>
+                            <button class="deleteRecord" type="button" name="deleteButton">Delete</button>
+                          </div>
+                        </td>
+                      </tr>
+                  {{/if}}
+            {{/each}}
+          </tbody>
+        </table>
+            {{else}}
+            <p class="center">No Result Found</p>
+    {{/if}}<br>
+    {{>pagerButton}}
+  </template>

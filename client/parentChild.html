@@ -1,0 +1,15 @@
+<template name="parent">
+   <a class="logId">Console log parent Id</a>
+   {{> firstChild id= this._id}}
+   <!-- {{> secondChild}} -->
+</template>
+
+<template name="firstChild">
+  {{file}}
+      {{> adminSelectUser parent= 1234}}
+</template>
+
+<template name="adminSelectUser">
+  <br>
+   <a class="selectUser">SelectUser</a>
+</template>
